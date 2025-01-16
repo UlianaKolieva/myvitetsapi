@@ -1,4 +1,5 @@
 //import { Link } from 'react-router-dom';
+import "../Main/Main.css"
 import Input from '../../app/Input/Input';
 import Button from '../../app/Button/Button';
 

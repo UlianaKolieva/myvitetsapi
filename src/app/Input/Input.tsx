@@ -1,4 +1,4 @@
-
+import "../Input/Input.css"
 
 interface IInputProps{
     setValue: React.Dispatch<React.SetStateAction<string>>
