@@ -8,7 +8,7 @@ const router = createBrowserRouter([
         element: <Main />,
     },
     {
-        path: "/settings",
+        path: "/movie/:movie",
         element: <Movie />,
     }
 ])

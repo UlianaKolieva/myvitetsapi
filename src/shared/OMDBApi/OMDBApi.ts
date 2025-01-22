@@ -12,6 +12,33 @@ export interface IMovie{
     Poster: string
 }
 
+export interface IMyMovie{
+    Title: string
+    Year: string
+    imdbID: string
+    Type: string
+    Poster: string
+    Actors: string
+    Awards: string
+    BoxOffice: string
+    Country: string
+    DVD: string
+    Director: string
+    Genre: string
+    Language: string
+    Metascore: string
+    Plot: string
+    Production: string
+    Rated: string
+    //Ratings: Array<IRatings>
+    Released: string
+    Runtime: string
+    Website: string
+    Writer: string
+    imdbRating: string
+    imdbVotes: string
+}
+
 interface ISearchMovieRDO{
     Response: string
     TotalResults: string
@@ -25,5 +52,12 @@ const OMDBApi = {
         })
         return res.data;
     },
+    getMovieById: async (id: string) => {
+        const res = await OMDBApiInstance.get<IMyMovie>("", {
+            params: { apikey: API_KEY, i: id }
+        });
+        console.log(res.data);
+        return res.data;
+    }
 }
 export default OMDBApi;
