@@ -2,38 +2,31 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { IMovie } from "../../shared/OMDBApi/OMDBApi";
 import "../MovieCard/MovieCard.css";
+import { useMovieStore } from "../../entities/MovieStore/Movie.store";
 
-const useLikesStore = create(persist(
-    (set, get) => ({
-        movies: {},
-        addLike: (imdbID: string) => {
-            const movie = get().movies[imdbID] || { likes: 0, liked: false };
-            set({ movies: { ...get().movies, [imdbID]: { ...movie, likes: movie.likes + 1, liked: !movie.liked } } });
-        },
-    }),
-    { name: 'likes-storage' } 
-));
 
-const storage = createJSONStorage(() => localStorage);
+//const storage = createJSONStorage(() => localStorage);
 
 const MovieCard = ({movie}: {movie: IMovie}) => {
-    const { movies, addLike } = useLikesStore();
+    //const { movies, addLike } = useMovieStore();
+    const { movies, addLike } = useMovieStore((store)=>store);
     const { likes, liked } = movies[movie.imdbID] || { likes: 0, liked: false };
 
+    const isLiked = movies.some((likedMovie) => 
+        likedMovie.imdbID === movie?.imdbID && likedMovie.liked === true
+      );
+
     const handleLikeToggle = () => {
-        addLike(movie.imdbID);
+        addLike(movie);
+        console.log('Clicked movie:', movie);
     };
 
     return <div className="container">
         <div className="poster" style={{backgroundImage: `url(${movie.Poster})`}}></div>
             <div className="shortdescription">
                 <h3>
-                    {liked ? (
-                        <span className="liked" onClick={handleLikeToggle}>&#10084;</span>
-                    ) : (
-                        <span className="like" onClick={handleLikeToggle}>&#10084;</span>
-                    )}
-                    {movie.Title}
+                <span className={`${isLiked ? 'liked' : 'like'}`} onClick={handleLikeToggle}>&#10084;</span>
+                {movie.Title}
                 </h3>
                 <p>{movie.Type}, {movie.Year}</p>
                 <p>ID: {movie.imdbID}</p>
