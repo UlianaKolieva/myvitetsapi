@@ -1,16 +1,10 @@
-import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware'
 import { IMovie } from "../../shared/OMDBApi/OMDBApi";
 import "../MovieCard/MovieCard.css";
 import { useMovieStore } from "../../entities/MovieStore/Movie.store";
 
-
-//const storage = createJSONStorage(() => localStorage);
-
 const MovieCard = ({movie}: {movie: IMovie}) => {
-    //const { movies, addLike } = useMovieStore();
     const { movies, addLike } = useMovieStore((store)=>store);
-    const { likes, liked } = movies[movie.imdbID] || { likes: 0, liked: false };
+    //const { likes, liked } = movies[movie.imdbID] || { likes: 0, liked: false };
 
     const isLiked = movies.some((likedMovie) => 
         likedMovie.imdbID === movie?.imdbID && likedMovie.liked === true

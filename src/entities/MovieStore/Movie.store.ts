@@ -1,22 +1,3 @@
-// import { create } from "zustand";
-// import { IMovie } from "../../shared/OMDBApi/OMDBApi";
-// import { persist } from "zustand/middleware";
-
-// interface MovieState {
-//     movies: Array<IMovie>
-//     addLike: (movie: IMovie) => void
-//   }
-// export const useMovieStore = create<MovieState>()(persist(
-//     (set, get) => ({
-//         movies: [],
-//         addLike: (movie: IMovie) => {
-//             set((state) => ({...state, movies: [...state.movies, movie]}))
-//         },
-//     }),
-//     { name: 'likes-storage' } 
-// ));
-
-
 import { create } from "zustand";
 import { IMovie } from "../../shared/OMDBApi/OMDBApi";
 import { persist } from "zustand/middleware";

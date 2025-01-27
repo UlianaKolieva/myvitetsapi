@@ -1,10 +1,8 @@
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "../Main/Main.css"
 import Input from '../../app/Input/Input';
 import Button from '../../app/Button/Button';
-
 import { useEffect, useState } from 'react';
-//import Search from '../../app/search/Search';
 import OMDBApi, { IMovie } from '../../shared/OMDBApi/OMDBApi';
 import Feed from '../../app/Feed/Feed';
 export default function Main() {
@@ -24,7 +22,7 @@ export default function Main() {
 
     return(
         <>
-            <h2>Main page</h2>
+            <div className='header'><h2>MyMovies</h2><Link className="headerlink" to="/liked">See liked &rarr;</Link></div>
             <form onSubmit={(e) => handleSearch(e)}>
                 <Input value={searchValue} setValue={setValue}/><Button />
             </form>
